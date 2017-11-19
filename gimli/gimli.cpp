@@ -10,7 +10,7 @@ void permutation(GimliState& state) {
   uint32_t z = 0;
 
   for (auto round = 24; round > 0; --round) {
-    for (auto column = 0; column < 4; ++column{
+    for (auto column = 0; column < 4; ++column) {
       x = rotate(state[column], 24);
       y = rotate(state[4 + column], 9);
       z = state[8 + column];
@@ -18,7 +18,7 @@ void permutation(GimliState& state) {
       state[4 + column] = y ^ x ^ ((x | z) << 1);
       state[column] = z ^ y ^ ((x & y) << 3);
     }
-    if ((round &3)==0){
+    if ((round & 3) == 0) {
       x = state[0];
       state[0] = state[1];
       state[1] = x;
@@ -26,7 +26,7 @@ void permutation(GimliState& state) {
       state[2] = state[3];
       state[3] = x;
     }
-    if ((round &3)==2){
+    if ((round & 3) == 2) {
       x = state[0];
       state[0] = state[2];
       state[2] = x;
@@ -34,7 +34,7 @@ void permutation(GimliState& state) {
       state[1] = state[3];
       state[3] = x;
     }
-    if ((round &3)==0){
+    if ((round & 3) == 0) {
       state[0] ^= (0x9e377900 | round);
     }
   }
