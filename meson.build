@@ -11,4 +11,4 @@ add_global_arguments('-Werror',
 catch = include_directories(['tools'])
 mtest = files('tools/test_main.cpp')
 
-subdir('gimli')
+subdir('primitives/gimli')
