@@ -4,3 +4,5 @@ t_sponge = executable('t_sponge',
     MainTest, TestSrc, GimliSrc,
     include_directories:[catch, Gimli],
     install : false)
+
+test('Sponge Constuction', t_sponge)
