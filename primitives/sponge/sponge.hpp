@@ -43,7 +43,7 @@ class Sponge {
     currentState = std::begin(state);
   }
 
-  void sqeezeTo(element_type<State>* output, size_t amount) {
+  void sqeezeTo(element_type<State>& output, size_t amount) {
     for (auto i = 0; i < amount; ++i) {
       output[i] = *currentState;
       ++currentState;
