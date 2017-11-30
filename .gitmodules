@@ -1,0 +1,3 @@
+[submodule "tools/libhydrogen"]
+	path = tools/libhydrogen
+	url = https://github.com/euripedesrocha/libhydrogen
