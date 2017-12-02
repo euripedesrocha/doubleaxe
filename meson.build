@@ -8,8 +8,8 @@ add_global_arguments('-Werror',
     '-Wextra',
     language : 'cpp')
 
-catch = include_directories(['tools'])
-MainTest = files('tools/test_main.cpp')
+catch = include_directories(['tools/Catch'])
+MainTest = files('tools/Catch/test_main.cpp')
 
 subdir('primitives/gimli')
 subdir('primitives/sponge')
