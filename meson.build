@@ -12,4 +12,3 @@ catch = include_directories(['tools/Catch'])
 MainTest = files('tools/Catch/test_main.cpp')
 
 subdir('primitives/gimli')
-subdir('primitives/sponge')
