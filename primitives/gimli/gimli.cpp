@@ -4,7 +4,7 @@ namespace Gimli {
 uint32_t rotate(uint32_t word, uint8_t nbits) {
   return (word << nbits) | (word >> (32 - nbits));
 }
-void permutation(GimliState& state) {
+void permutation(State& state) {
   uint32_t x = 0;
   uint32_t y = 0;
   uint32_t z = 0;
