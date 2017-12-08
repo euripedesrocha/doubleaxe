@@ -16,34 +16,41 @@ template <typename T>
 using element_type = typename std::remove_reference<decltype(
     *std::begin(std::declval<T&>()))>::type;
 
-template <typename State>
+template <class Algorithm, class StateType, size_t capacity>
 class Sponge {
-  State state{{0}};
+  static_assert(capacity % 32 == 0, "Capacity should be a multiple of 32 bits");
+  static constexpr std::size_t bitRate =
+      std::tuple_size<StateType>::value - capacity;
   decltype(std::begin(state)) currentState = std::begin(state);
-  void permutate();
-  void pad();
-  const std::size_t bitRate;
+
+ protected:
   void inline verifyPermutate() {
     if (currentState == std::begin(state) + bitRate) {
       currentState = std::begin(state);
-      permutate(state);
+      static_cast<Algorithm*>(this)->permutation(state);
     }
   }
 
- public:
-  constexpr Sponge(std::size_t bitRate) : bitRate(bitRate) {}
-  void absorb(const element_type<State> data_in) {
+  void absorb(StateType& state, const element_type<StateType> data_in) {
     *currentState ^= data_in;
     ++currentState;
     verifyPermutate();
   }
-  void switchToSqueeze() {
-    pad();
-    permutate();
+  void switchToSqueeze(StateType& state) {
+    static_cast<Algorithm*>(this)->pad(state);
+    static_cast<Algorithm*>(this)->permutation(state);
     currentState = std::begin(state);
   }
 
-  void sqeezeTo(element_type<State>& output, size_t amount) {
+  uint32_t sqeeze(StateType& state, element_type<StateType>& output) {
+    auto output = *currentState;
+    ++currentState;
+    verifyPermutate();
+    return output;
+  }
+
+  void sqeezeTo(StateType& state, element_type<StateType>& output,
+                size_t amount) {
     for (auto i = 0; i < amount; ++i) {
       output[i] = *currentState;
       ++currentState;

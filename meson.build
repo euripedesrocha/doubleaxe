@@ -1,5 +1,5 @@
 project('doubleaxe', 'cpp', 'c',
-    default_options : ['cpp_std=c++14', 'c_std=c11'],
+    default_options : ['cpp_std=c++1z', 'c_std=c11'],
     version : '0.0.1',
     license : 'MIT')
 
@@ -15,3 +15,5 @@ ReferenceSrc = files('tools/Reference/gimli.c')
 
 
 subdir('primitives/gimli')
+subdir('primitives/sponge')
+subdir('doubleaxe')

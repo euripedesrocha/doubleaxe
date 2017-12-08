@@ -2,8 +2,8 @@
 #include <array>
 #include <cstdint>
 namespace Gimli {
-
-template <class Structure, typename StateType, size_t n_rounds>
+using GimliState = std::array<uint32_t, 12>;
+template <class Algorithm, typename StateType, size_t n_rounds>
 class Gimli {
   uint32_t rotate(uint32_t word, uint8_t nbits) {
     return (word << nbits) | (word >> (32 - nbits));

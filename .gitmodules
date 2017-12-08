@@ -1,3 +1,6 @@
 [submodule "tools/libhydrogen"]
 	path = tools/libhydrogen
 	url = https://github.com/euripedesrocha/libhydrogen
+[submodule "tools/KeccakCodePackage"]
+	path = tools/KeccakCodePackage
+	url = https://github.com/gvanas/KeccakCodePackage.git
